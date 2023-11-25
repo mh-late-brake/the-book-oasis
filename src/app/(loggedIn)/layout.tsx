@@ -1,4 +1,4 @@
-import { SignOutButton } from "@/component/authComponent";
+import { SignOutButton } from "../../component/authComponent";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
