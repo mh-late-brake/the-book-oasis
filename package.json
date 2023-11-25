@@ -1,5 +1,5 @@
 {
-  "name": "book-coffee-project",
+  "name": "the-book-oasis",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
   "dependencies": {
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "next-auth": "beta"
   },
   "devDependencies": {
     "@types/node": "^20",
