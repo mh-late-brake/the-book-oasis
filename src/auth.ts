@@ -2,10 +2,8 @@ import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
 import { useRouter } from "next/navigation";
 
-// import Facebook from "next-auth/providers/facebook"
 import GitHub from "next-auth/providers/github";
-// import Google from "next-auth/providers/google"
-// import Reddit from "next-auth/providers/reddit"
+import Google from "next-auth/providers/google"
 
 import type { NextAuthConfig } from "next-auth";
 
@@ -14,10 +12,8 @@ export const config = {
     logo: "https://next-auth.js.org/img/logo/logo-sm.png",
   },
   providers: [
-    // Facebook,
     GitHub,
-    // Google,
-    // Reddit,
+    Google,
   ],
   callbacks: {
     authorized({ request, auth }) {
