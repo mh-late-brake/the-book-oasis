@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignIn } from "@/component/authComponent";
+import { SignIn } from "../component/authComponent";
 
 export default function Home() {
   return (

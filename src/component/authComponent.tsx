@@ -1,4 +1,4 @@
-import { signIn, signOut } from "@/auth"
+import { signIn, signOut } from "../auth"
 import { redirect } from "next/navigation"
 
 export function SignIn() {
