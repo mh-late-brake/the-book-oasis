@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignInButton, SignOutButton } from "../component/authComponent";
+import { SignInButton, SignOutButton } from "../../component/authComponent";
 
 export default function Page() {
   return (
