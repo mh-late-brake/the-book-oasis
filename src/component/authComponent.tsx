@@ -1,7 +1,7 @@
 import { signIn, signOut } from "../auth"
 import { redirect } from "next/navigation"
 
-export function SignIn() {
+export function SignInButton() {
   return (
     <form
       action={async () => {
@@ -16,7 +16,7 @@ export function SignIn() {
   )
 }
 
-export function SignOut() {
+export function SignOutButton() {
   return (
     <form
       action={async () => {
