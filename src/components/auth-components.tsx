@@ -11,23 +11,22 @@ export function SignInButton() {
         redirect(url.replace("signin", "api/auth/signin"))
       }}
     >
-      <button>Sign In</button>
+      <button className="text-blue-600 underline">Sign In</button>
     </form>
   )
 }
+
 
 export function SignOutButton() {
   return (
     <form
       action={async () => {
-        "use server"
-        await signOut()
+        "use server";
+        await signOut();
       }}
       className="w-full"
     >
-      <button className="w-full p-0">
-        Sign Out
-      </button>
+      <button>Sign Out</button>
     </form>
-  )
+  );
 }
