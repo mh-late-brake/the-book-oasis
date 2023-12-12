@@ -1,4 +1,4 @@
-import { signOut } from "@/auth";
+import { signOut } from "src/auth";
 import { MdPerson } from "react-icons/md";
 import { GoHome, GoGraph } from "react-icons/go";
 import { VscLibrary } from "react-icons/vsc";

@@ -1,4 +1,4 @@
-import QuoteFromAPI from "@/components/quote-from-api";
+import QuoteFromAPI from "src/components/quote-from-api";
 
 export default function Page() {
   return (
