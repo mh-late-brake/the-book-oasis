@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SignInButton, SignOutButton } from "@/components/auth-components";
-import { auth } from "../../auth";
+import { auth } from "@/auth";
 
 export default function Page() {
   return (
