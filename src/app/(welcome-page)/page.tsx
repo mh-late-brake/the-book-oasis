@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { SignInButton, SignOutButton } from "../../components/auth-components";
-import { auth } from "../../auth";
+import { SignInButton, SignOutButton } from "src/components/auth-components";
+import { auth } from "src/auth";
 
 export default function Page() {
   return (
@@ -23,7 +23,7 @@ const LoginBox = async () => {
     <div className="text-center text-4xl space-x-10 p-8 fixed right-40 h-2/3 w-1/4 overflow-hidden border-2 border-slate-300 bg-slate-200">
       {session && <p>Hello, {session.user?.name}</p>}
       {loginStatus}
-      {session ? <Link href="/home" className="text-blue-600 underline">Go to Home page</Link> : <SignInButton /> }
+      {session ? <Link href="/home" className="text-blue-600 underline">Go to Home page</Link> : <SignInButton />}
     </div>
   );
 };

@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -38,11 +39,3 @@ next-env.d.ts
 # vscode setting
 .vscode
 
-#prettier config
-prettier.config.js
-
-#eslint config
-.eslintrc.json
-
-#TypeScript config
-tsconfig.json
