@@ -9,8 +9,69 @@ datasource db {
 }
 
 model User {
-  email     String   @id
-  createdAt DateTime @default(now())
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  email     Email[]
+  book      Book[]
+  note      UserNote[]
+}
 
-  @@index([email])
+model Email {
+  email  String @id
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Book {
+  id              Int         @id @default(autoincrement())
+  title           String
+  author          String?
+  genre           String?
+  numberOfPages   Int?
+  status          BookStatus?
+  rating          BookRating?
+  createdAt       DateTime    @default(now())
+  startReadingAt  DateTime?
+  finishReadingAt DateTime?
+  coverImageURL   String?
+  ebookFileURL    String?
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id])
+  note            BookNote[]
+}
+
+model BookNote {
+  id             Int      @id @default(autoincrement())
+  title          String
+  content        String?
+  createdAt      DateTime @default(now())
+  lastModifiedAt DateTime
+  bookId         Int
+  book           Book     @relation(fields: [bookId], references: [id])
+}
+
+model UserNote {
+  id             Int      @id @default(autoincrement())
+  title          String
+  content        String?
+  createdAt      DateTime @default(now())
+  lastModifiedAt DateTime
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+enum BookRating {
+  Star1
+  Star2
+  Star3
+  Star4
+  Star5
+}
+
+enum BookStatus {
+  ToRead
+  Reading
+  Read
+  Paused
+  Abandoned
 }
