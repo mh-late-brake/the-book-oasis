@@ -24,13 +24,13 @@ export default function BookCard({
   status,
   rating,
 }: InputType) {
-  const imageURL = coverImageUrl || altBookCover;
+  const imageUrl = coverImageUrl || altBookCover;
 
   return (
     <div className="flex h-72 max-w-md flex-row rounded-lg border border-gray-200 bg-gray-50 shadow hover:bg-gray-100 hover:shadow-md">
       <Image
         className="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-        src={imageURL}
+        src={imageUrl}
         alt="Book Cover"
         width={200}
         height={200}

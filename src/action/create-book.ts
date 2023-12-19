@@ -67,7 +67,7 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
           genre: parsed.data.genre || null,
           numberOfPages: parsed.data.numberOfPages || null,
           status: parsed.data.status,
-          coverImageURL: parsed.data.url || null,
+          coverImageUrl: parsed.data.url || null,
           coverImageKey: parsed.data.url || null,
         },
       },
