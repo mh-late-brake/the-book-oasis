@@ -55,7 +55,10 @@ export const config = {
       // The first time this jwt callback is called (at sign in), all parameters (token, account, profile) will exist.
       // After that, only the "token" parameter will be passed to this function.
 
-      // When user sign in, update the User table in the database (findOrCreate = upsert() in Prisma)
+      // When user sign in, update the User table in the database (findOrCreate user)
+
+      //TODO: Disable this feature in development to avoid Prisma client connect to DB after server reload
+
       if (account || profile) {
         const findUser = await prisma.user.findFirst({
           where: {

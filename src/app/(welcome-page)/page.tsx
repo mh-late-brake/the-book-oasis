@@ -18,12 +18,22 @@ export default function Page() {
 
 const LoginBox = async () => {
   const session = await auth();
-  const loginStatus = session ? <p className="my-5">You have logged in</p> : <p className="my-5">Login to use our app</p>;
+  const loginStatus = session ? (
+    <p className="my-5">You have logged in</p>
+  ) : (
+    <p className="my-5">Login to use our app</p>
+  );
   return (
-    <div className="text-center text-4xl space-x-10 p-8 fixed right-40 h-2/3 w-1/4 overflow-hidden border-2 border-slate-300 bg-slate-200">
+    <div className="fixed right-40 h-2/3 w-1/4 space-x-10 overflow-hidden border-2 border-slate-300 bg-slate-200 p-8 text-center text-4xl">
       {session && <p>Hello, {session.user?.name}</p>}
       {loginStatus}
-      {session ? <Link href="/home" className="text-blue-600 underline">Go to Home page</Link> : <SignInButton />}
+      {session ? (
+        <Link href="/home" className="text-blue-600 underline">
+          Go to Home page
+        </Link>
+      ) : (
+        <SignInButton />
+      )}
     </div>
   );
 };

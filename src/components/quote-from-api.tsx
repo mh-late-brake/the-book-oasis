@@ -1,5 +1,5 @@
-"use client"
-import { useEffect, useState } from "react"
+"use client";
+import { useEffect, useState } from "react";
 
 export default function QuoteFromAPI() {
   const [quote, setQuote] = useState({
@@ -8,22 +8,25 @@ export default function QuoteFromAPI() {
   });
   useEffect(() => {
     fetch("https://api.quotable.io/quotes/random")
-      .then(response => response.json())
-      .then(data => setQuote({
-        content: data[0]["content"],
-        author: data[0]["author"]
-      }))
-      .catch(error => console.log(error));
-  }, [])
+      .then((response) => response.json())
+      .then((data) =>
+        setQuote({
+          content: data[0]["content"],
+          author: data[0]["author"],
+        }),
+      )
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleNewQuote = async () => {
-    const res = await fetch("https://api.quotable.io/quotes/random").then(res => res.json());
+    const res = await fetch("https://api.quotable.io/quotes/random").then(
+      (res) => res.json(),
+    );
     setQuote({
       content: res[0]["content"],
-      author: res[0]["author"]
-    }
-    );
-  }
+      author: res[0]["author"],
+    });
+  };
 
   return (
     <div className="mt-20 text-center text-4xl">
@@ -31,7 +34,12 @@ export default function QuoteFromAPI() {
       <p className="italic">{quote.content}</p>
       <p>By author:</p>
       <p className="italic">{quote.author}</p>
-      <button className="bg-gray-800 text-white" onClick={() => handleNewQuote()}>New Quote</button>
+      <button
+        className="bg-gray-800 text-white"
+        onClick={() => handleNewQuote()}
+      >
+        New Quote
+      </button>
     </div>
-  )
+  );
 }

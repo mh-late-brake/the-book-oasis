@@ -3,11 +3,15 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
       },
     ],
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

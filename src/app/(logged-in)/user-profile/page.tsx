@@ -12,7 +12,14 @@ export default async function Page() {
       <p className="text-4xl">Username: {user?.name}</p>
       <p className="text-4xl">Email address: {user?.email}</p>
       <p className="text-4xl">Profile image:</p>
-      {imageLink && <Image src={imageLink} alt="Profile picture provided by OAuth provider." width={200} height={200} />}
+      {imageLink && (
+        <Image
+          src={imageLink}
+          alt="Profile picture provided by OAuth provider."
+          width={200}
+          height={200}
+        />
+      )}
     </div>
   );
 }

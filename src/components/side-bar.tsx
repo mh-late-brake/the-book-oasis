@@ -31,7 +31,13 @@ export default function SideBar() {
   );
 }
 
-const SideBarIcon = ({ icon, text = "tooltip" }: { icon: ReactNode; text: any }) => (
+const SideBarIcon = ({
+  icon,
+  text = "tooltip",
+}: {
+  icon: ReactNode;
+  text: any;
+}) => (
   <div className="group relative mx-auto mb-2 mt-2 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gray-400 text-gray-600 shadow-lg hover:rounded-xl hover:bg-gray-600 hover:text-white">
     {icon}
     <span className="absolute left-20 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-gray-300 p-2 text-xl text-gray-600 shadow-md transition-all duration-100 group-hover:scale-100">
