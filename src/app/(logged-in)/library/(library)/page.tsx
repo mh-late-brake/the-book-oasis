@@ -11,38 +11,51 @@ export default async function Page() {
   const authedUser = session.user!;
   const userEmail = authedUser.email;
 
-  const user = await prisma.user.findFirst({
-    where: {
-      email: {
-        some: {
-          email: userEmail as string,
+  let user;
+
+  try {
+    user = await prisma.user.findFirst({
+      where: {
+        email: {
+          some: {
+            email: userEmail as string,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (e) {
+    throw new Error("Network error: failed to connect to DB server.");
+  }
 
-  if (!user) throw Error("Cannot find user in DB");
+  if (!user) throw new Error("Cannot find user in DB");
 
-  const bookData = await prisma.book.findMany({
-    where: {
-      userId: user.id,
-    },
-    select: {
-      id: true,
-      coverImageUrl: true,
-      title: true,
-      author: true,
-      genre: true,
-      rating: true,
-      status: true,
-    },
-  });
+  let bookData;
+
+  try {
+    bookData = await prisma.book.findMany({
+      where: {
+        userId: user.id,
+      },
+      select: {
+        id: true,
+        coverImageUrl: true,
+        title: true,
+        author: true,
+        genre: true,
+        rating: true,
+        status: true,
+      },
+    });
+  } catch (e) {
+    throw new Error("Network error: failed to connect to DB server.");
+  }
 
   return (
     <div className="mx-6 my-6 grid grid-cols-4 gap-7">
       <AddBookCard />
       {bookData.map((book) => (
         <BookCard
+          id={book.id}
           key={book.id}
           coverImageUrl={book.coverImageUrl}
           title={book.title}

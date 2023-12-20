@@ -59,38 +59,39 @@ export const config = {
 
       //TODO: Disable this feature in development to avoid Prisma client connect to DB after server reload
 
-      if (account || profile) {
-        const findUser = await prisma.user.findFirst({
-          where: {
-            email: {
-              some: {
-                email: {
-                  equals: token.email as string,
-                },
-              },
-            },
-          },
-        });
-
-        console.log("Find user in DB");
-        console.log(findUser);
-
-        if (!findUser) {
-          const newUser = await prisma.user.create({
-            data: {
+      try {
+        if (account || profile) {
+          const findUser = await prisma.user.findFirst({
+            where: {
               email: {
-                create: {
-                  email: token.email as string,
+                some: {
+                  email: {
+                    equals: token.email as string,
+                  },
                 },
               },
-            },
-            include: {
-              email: true,
             },
           });
-          console.log("Added user to DB");
-          console.log(newUser);
+
+          if (!findUser) {
+            await prisma.user.create({
+              data: {
+                email: {
+                  create: {
+                    email: token.email as string,
+                  },
+                },
+              },
+              include: {
+                email: true,
+              },
+            });
+          }
         }
+      } catch (e) {
+        throw new Error(
+          "(while auth)Something failed, network maybe? Cannot connect to DB? Please try again",
+        );
       }
 
       return token;

@@ -43,41 +43,56 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
       error: parsed.error.flatten().fieldErrors,
     };
 
-  const currentUser = await prisma.user.findFirst({
-    where: {
-      email: {
-        some: {
-          email: userEmail as string,
+  let currentUser;
+
+  try {
+    currentUser = await prisma.user.findFirst({
+      where: {
+        email: {
+          some: {
+            email: userEmail as string,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (e) {
+    return { error: "Network error: Failed to connect to database server." };
+  }
 
   if (!currentUser) return { error: "cannot find current user in the DB" };
 
-  const updatedUser = await prisma.user.update({
-    where: {
-      id: currentUser.id,
-    },
-    data: {
-      book: {
-        create: {
-          title: parsed.data.title,
-          author: parsed.data.author || null,
-          genre: parsed.data.genre || null,
-          numberOfPages: parsed.data.numberOfPages || null,
-          status: parsed.data.status,
-          coverImageUrl: parsed.data.url || null,
-          coverImageKey: parsed.data.url || null,
+  let successful = false;
+
+  try {
+    await prisma.user.update({
+      where: {
+        id: currentUser.id,
+      },
+      data: {
+        book: {
+          create: {
+            title: parsed.data.title,
+            author: parsed.data.author || null,
+            genre: parsed.data.genre || null,
+            numberOfPages: parsed.data.numberOfPages || null,
+            status: parsed.data.status,
+            coverImageUrl: parsed.data.url || null,
+            coverImageKey: parsed.data.key || null,
+          },
         },
       },
-    },
-    include: {
-      book: true,
-    },
-  });
-
-  console.log(updatedUser);
-  revalidatePath("/library");
-  redirect("/library");
+      include: {
+        book: true,
+      },
+    });
+    successful = true;
+  } catch (e) {
+    return { error: "Network error: Failed to connect to database server." };
+  }
+  if (successful) {
+    revalidatePath("/library");
+    redirect("/library");
+  } else {
+    return { error: "Something bad happended." };
+  }
 };

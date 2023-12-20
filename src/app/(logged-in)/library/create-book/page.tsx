@@ -9,7 +9,6 @@ import {
   CancelButton,
 } from "@/components/create-book-form-button";
 import { useFormState } from "react-dom";
-import { error } from "console";
 
 export default function Page() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
