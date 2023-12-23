@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export default async function Page() {
   const session = await auth();
-  if (!session) return null;
+  if (!session) throw new Error("not authenticated");
   const authedUser = session.user!;
   const userEmail = authedUser.email;
 

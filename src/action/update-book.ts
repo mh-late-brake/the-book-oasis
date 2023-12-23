@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 export const updateBook = async (prevFromState: any, formData: FormData) => {
   const session = await auth();
-  if (!session) throw new Error("Not authenticated");
+  if (!session) return { error: "Not authenticated" };
   const user = session.user!;
   const userEmail = user.email!;
 

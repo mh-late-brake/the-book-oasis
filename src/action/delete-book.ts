@@ -81,7 +81,7 @@ export const deleteBook = async (formData: FormData) => {
   }
 
   try {
-    await prisma.bookNote.deleteMany({
+    await prisma.note.deleteMany({
       where: {
         bookId: book.id,
       },

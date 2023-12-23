@@ -9,11 +9,11 @@ datasource db {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  createdAt DateTime   @default(now())
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
   email     Email[]
   book      Book[]
-  note      UserNote[]
+  note      Note[]
 
   @@index([id])
 }
@@ -44,36 +44,26 @@ model Book {
   ebookFileKey    String?
   userId          Int
   user            User        @relation(fields: [userId], references: [id])
-  note            BookNote[]
+  note            Note[]
 
   @@index([userId])
   @@index([id])
 }
 
-model BookNote {
+model Note {
   id             Int      @id @default(autoincrement())
   title          String
   content        String?  @db.Text
   createdAt      DateTime @default(now())
   lastModifiedAt DateTime
-  bookId         Int
-  book           Book     @relation(fields: [bookId], references: [id])
-
-  @@index([bookId])
-  @@index([id])
-}
-
-model UserNote {
-  id             Int      @id @default(autoincrement())
-  title          String
-  content        String?  @db.Text
-  createdAt      DateTime @default(now())
-  lastModifiedAt DateTime
+  bookId         Int?
+  book           Book?    @relation(fields: [bookId], references: [id])
   userId         Int
   user           User     @relation(fields: [userId], references: [id])
 
-  @@index([userId])
+  @@index([bookId])
   @@index([id])
+  @@index([userId])
 }
 
 enum BookRating {

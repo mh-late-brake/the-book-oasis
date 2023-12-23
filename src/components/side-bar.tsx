@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 export default function SideBar() {
   return (
     <div className="fixed left-0 top-0 flex h-screen w-20 flex-col bg-slate-200 shadow-xl">
-      <Link href="user-profile">
+      <Link href="/user-profile">
         <SideBarIcon icon={<MdPerson size="55" />} text="User Profile" />
       </Link>
       <Link href="/home">
@@ -19,7 +19,7 @@ export default function SideBar() {
       <Link href="/library">
         <SideBarIcon icon={<VscLibrary size="50" />} text="Library" />
       </Link>
-      <Link href="notes">
+      <Link href="/notes">
         <SideBarIcon icon={<CiStickyNote size="55" />} text="Notes" />
       </Link>
       <Link href="/statistics">
