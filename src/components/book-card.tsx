@@ -29,7 +29,7 @@ export default function BookCard({
 
   return (
     <Link href={"/library/book/" + id}>
-      <div className="flex h-72 max-w-md flex-row rounded-lg border border-gray-200 bg-gray-50 shadow hover:bg-gray-100 hover:shadow-md">
+      <div className="flex h-72 max-w-md flex-row rounded-lg border border-gray-200 bg-gray-50 shadow-md hover:bg-gray-100 hover:shadow-lg">
         <Image
           className="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
           src={imageUrl}
