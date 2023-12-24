@@ -4,6 +4,7 @@ import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
 import CreateNote from "src/components/create-note";
 import Notes from "src/components/notes";
+import BookDetailPage from "@/components/book-detail-page";
 
 const prisma = new PrismaClient();
 
@@ -87,41 +88,10 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   });
 
   return (
-    <>
-      <div className="m-auto mt-44 flex h-screen w-4/5">
-        <div className="basis-1/3">
-          <BookCoverForm id={book.id} imageUrl={book.coverImageUrl} />
-        </div>
-        <div className="basis-2/3">
-          <BookDetailForm
-            id={book.id}
-            title={book.title}
-            author={book.author}
-            genre={book.genre}
-            numberOfPages={book.numberOfPages}
-            status={book.status}
-            rating={book.rating}
-            startReadingAt={book.startReadingAt}
-            finishReadingAt={book.finishReadingAt}
-          />
-        </div>
-      </div>
-      <div className="grid grid-cols-5 gap-7 p-5">
-        <CreateNote
-          defaultOwnerId={book.id}
-          listOfOwner={listOfOwner.map((owner) => ({
-            id: owner.id,
-            name: owner.title,
-          }))}
-        />
-        <Notes
-          listOfNote={listOfNote}
-          listOfOwner={listOfOwner.map((owner) => ({
-            ownerId: owner.id,
-            ownerName: owner.title,
-          }))}
-        />
-      </div>
-    </>
+    <BookDetailPage
+      book={book}
+      listOfOwner={listOfOwner}
+      listOfNote={listOfNote}
+    />
   );
 }
