@@ -28,6 +28,7 @@ export default function BookDetailForm({
   | "userId"
   | "coverImageUrl"
   | "coverImageKey"
+  | "lastOpenAt"
 >) {
   const [formState, formAction] = useFormState(updateBook, null);
 
