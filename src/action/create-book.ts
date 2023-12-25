@@ -78,6 +78,8 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
             status: parsed.data.status,
             coverImageUrl: parsed.data.url || null,
             coverImageKey: parsed.data.key || null,
+            createdAt: new Date(),
+            lastOpenAt: new Date(),
           },
         },
       },

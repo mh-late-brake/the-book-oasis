@@ -1,7 +1,6 @@
-import BookCard from "src/components/book-card";
-import AddBookCard from "src/components/add-book-card";
 import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
+import LibaryPage from "@/components/library-page";
 
 const prisma = new PrismaClient();
 
@@ -44,27 +43,12 @@ export default async function Page() {
         genre: true,
         rating: true,
         status: true,
+        lastOpenAt: true,
       },
     });
   } catch (e) {
     throw new Error("Network error: failed to connect to DB server.");
   }
 
-  return (
-    <div className="mx-6 my-6 grid grid-cols-4 gap-7">
-      <AddBookCard />
-      {bookData.map((book) => (
-        <BookCard
-          id={book.id}
-          key={book.id}
-          coverImageUrl={book.coverImageUrl}
-          title={book.title}
-          author={book.author}
-          genre={book.genre}
-          rating={book.rating}
-          status={book.status}
-        />
-      ))}
-    </div>
-  );
+  return <LibaryPage bookData={bookData} />;
 }

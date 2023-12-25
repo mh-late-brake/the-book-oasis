@@ -36,6 +36,7 @@ model Book {
   status          BookStatus?
   rating          BookRating?
   createdAt       DateTime    @default(now())
+  lastOpenAt      DateTime
   startReadingAt  DateTime?
   finishReadingAt DateTime?
   coverImageUrl   String?

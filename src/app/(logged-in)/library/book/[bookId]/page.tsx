@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import CreateNote from "src/components/create-note";
 import Notes from "src/components/notes";
 import BookDetailPage from "@/components/book-detail-page";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -38,14 +39,18 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   let book;
 
   try {
-    book = await prisma.book.findUnique({
+    book = await prisma.book.update({
       where: {
         id: bookId,
+      },
+      data: {
+        lastOpenAt: new Date(),
       },
       include: {
         note: true,
       },
     });
+    revalidatePath("/library");
   } catch (e) {
     throw new Error("Network error: Cannot connect to DB server.");
   }

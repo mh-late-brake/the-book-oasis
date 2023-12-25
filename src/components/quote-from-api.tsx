@@ -9,11 +9,12 @@ export default function QuoteFromAPI() {
     revalidateOnFocus: false,
   });
 
-  if (error) return <div>Error while fetching quote</div>;
+  let content;
+  if (error) content = "Error while fetching quote from API";
+  else if (isLoading) content = "Fetching quote from API ...";
+  else content = `"${data[0].content}"`;
 
-  if (isLoading) return <div className="text-lg">Loading quote ...</div>;
-
-  const quote = data[0];
+  const author = !error && !isLoading && `-- ${data[0].author} --`;
 
   return (
     <div className="rounded-2xl border border-gray-100 p-2 pl-3 shadow-lg">
@@ -27,8 +28,8 @@ export default function QuoteFromAPI() {
         >
           <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
         </svg>
-        <p>{`"${quote.content}"`}</p>
-        <p className="text-center">{`-- ${quote.author} --`}</p>
+        <p>{content}</p>
+        <p className="text-center">{author}</p>
         <div className="flex items-center justify-end px-5">
           <svg
             className="mt-4 h-8 w-8 text-gray-400"
