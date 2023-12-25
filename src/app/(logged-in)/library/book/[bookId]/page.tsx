@@ -1,9 +1,5 @@
-import BookDetailForm from "src/components/book-detail-form";
-import BookCoverForm from "src/components/book-cover-form";
 import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
-import CreateNote from "src/components/create-note";
-import Notes from "src/components/notes";
 import BookDetailPage from "@/components/book-detail-page";
 import { revalidatePath } from "next/cache";
 
