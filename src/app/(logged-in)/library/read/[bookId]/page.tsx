@@ -73,13 +73,19 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   const ownerId = book.id;
   const ownerName = book.title;
 
-  const listOfNote = book.note.map((note) => ({
-    noteId: note.id,
-    noteTitle: note.title,
-    noteContent: note.content,
-    ownerId,
-    ownerName,
-  }));
+  const listOfNote = book.note
+    .sort((a, b) => {
+      if (a.lastModifiedAt > b.lastModifiedAt) return -1;
+      if (a.lastModifiedAt < b.lastModifiedAt) return 1;
+      return 0;
+    })
+    .map((note) => ({
+      noteId: note.id,
+      noteTitle: note.title,
+      noteContent: note.content,
+      ownerId,
+      ownerName,
+    }));
 
   let listOfOwner;
 
@@ -105,11 +111,27 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   revalidatePath("/library");
 
   return (
-    <div className="flex h-full">
-      <div className="basis-2/3">
+    <div className="flex h-full w-full pl-0.5 pt-0.5">
+      <div className="h-[94vh] basis-4/5 border border-gray-200 shadow-lg">
         <EbookReader
           ebookName={book.ebookFileName}
           ebookUrl={book.ebookFileUrl}
+        />
+      </div>
+      <div className="flex h-[94vh] basis-1/5 flex-col items-center overflow-auto">
+        <CreateNote
+          defaultOwnerId={book.id}
+          listOfOwner={listOfOwner.map((owner) => ({
+            id: owner.id,
+            name: owner.title,
+          }))}
+        />
+        <Notes
+          listOfNote={listOfNote}
+          listOfOwner={listOfOwner.map((owner) => ({
+            ownerId: owner.id,
+            ownerName: owner.title,
+          }))}
         />
       </div>
     </div>

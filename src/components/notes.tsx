@@ -94,7 +94,7 @@ const TextArea = ({
   return (
     <div
       onClick={() => dispatchModal(null)}
-      className="fixed left-20 top-0 h-full w-full bg-gray-500 bg-opacity-50"
+      className="fixed left-20 top-0 z-50 h-full w-full bg-gray-500 bg-opacity-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -235,7 +235,7 @@ const NoteCard = ({
   return (
     <div
       onClick={() => dispatchModal(id)}
-      className="flex h-52 max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white px-6 py-4 shadow hover:bg-gray-100"
+      className="flex h-52 w-full flex-col justify-between rounded-lg border border-gray-200 bg-white px-6 py-4 shadow hover:bg-gray-100"
     >
       <div className="h-32 overflow-hidden">
         <h5 className="mb-2 text-2xl font-medium tracking-tight text-gray-900">

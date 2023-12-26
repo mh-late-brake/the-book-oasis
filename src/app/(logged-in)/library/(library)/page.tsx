@@ -44,6 +44,7 @@ export default async function Page() {
         rating: true,
         status: true,
         lastOpenAt: true,
+        ebookFileName: true,
       },
     });
   } catch (e) {
