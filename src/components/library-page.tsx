@@ -40,10 +40,10 @@ export default function LibaryPage({ bookData }: { bookData: InputType }) {
   if (searchInput !== "")
     bookDataAfterProcess = bookDataAfterProcess.filter((book) => {
       return (
-        book.title.includes(searchInput) ||
-        book.genre?.includes(searchInput) ||
-        book.author?.includes(searchInput) ||
-        book.status?.includes(searchInput)
+        book.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+        book.genre?.toLowerCase().includes(searchInput.toLowerCase()) ||
+        book.author?.toLowerCase().includes(searchInput.toLowerCase()) ||
+        book.status?.toLowerCase().includes(searchInput.toLowerCase())
       );
     });
 

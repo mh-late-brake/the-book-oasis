@@ -61,7 +61,7 @@ const TextArea = ({
         <form action={formAction}>
           <div className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50">
             <div className="flex items-center justify-between border-t px-3 py-0">
-              <div>
+              <div className="w-1/2">
                 <input
                   type="text"
                   name="title"

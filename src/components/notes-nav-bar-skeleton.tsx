@@ -2,16 +2,12 @@ export default function NavBarSkeleton() {
   return (
     <>
       <nav className="flex w-full bg-white px-6 py-1 font-sans shadow-md">
-        <div className="text-grey-darkest mx-auto mb-1 text-2xl">Library</div>
+        <div className="text-grey-darkest mx-auto mb-1 text-2xl">Notes</div>
         <select className="text-md mx-4 w-28 rounded-3xl border border-purple-700 bg-transparent text-center text-purple-700">
           <option>Recent</option>
           <option>! Recent</option>
-          <option>Title &#x2191;</option>
-          <option>Title &#x2193;</option>
-          <option>Author &#x2191;</option>
-          <option>Author &#x2193;</option>
-          <option>Genre &#x2191;</option>
-          <option>Genre &#x2193;</option>
+          <option>Book &#x2191;</option>
+          <option>Book &#x2193;</option>
         </select>
         <div className="flex w-1/4 items-center rounded-3xl border border-purple-700 bg-gray-50 px-4 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
           <svg

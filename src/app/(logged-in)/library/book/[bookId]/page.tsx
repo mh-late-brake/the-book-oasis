@@ -1,9 +1,5 @@
-import BookDetailForm from "src/components/book-detail-form";
-import BookCoverForm from "src/components/book-cover-form";
 import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
-import CreateNote from "src/components/create-note";
-import Notes from "src/components/notes";
 import BookDetailPage from "@/components/book-detail-page";
 import { revalidatePath } from "next/cache";
 
@@ -50,7 +46,7 @@ export default async function Page({ params }: { params: { bookId: string } }) {
         note: true,
       },
     });
-    revalidatePath("/library");
+    // revalidatePath("/library");
   } catch (e) {
     throw new Error("Network error: Cannot connect to DB server.");
   }
@@ -91,6 +87,8 @@ export default async function Page({ params }: { params: { bookId: string } }) {
     id: -1,
     title: "General Note",
   });
+
+  revalidatePath("/library");
 
   return (
     <BookDetailPage

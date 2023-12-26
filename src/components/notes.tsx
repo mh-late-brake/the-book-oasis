@@ -104,7 +104,7 @@ const TextArea = ({
           <input type="hidden" name="id" value={noteId} />
           <div className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50">
             <div className="flex items-center justify-between border-t px-3 py-0">
-              <div>
+              <div className="w-1/2">
                 <input
                   type="text"
                   name="title"
@@ -237,14 +237,16 @@ const NoteCard = ({
       onClick={() => dispatchModal(id)}
       className="flex h-52 max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white px-6 py-4 shadow hover:bg-gray-100"
     >
-      <div>
+      <div className="h-32 overflow-hidden">
         <h5 className="mb-2 text-2xl font-medium tracking-tight text-gray-900">
           {title}
         </h5>
         <p className="font-normal text-gray-700">{content}</p>
       </div>
       <div className="flex items-center justify-end">
-        <div className="rounded-lg bg-gray-200 px-2">{owner}</div>
+        <div className="h-7 overflow-hidden rounded-lg bg-gray-200 px-2">
+          {owner}
+        </div>
       </div>
     </div>
   );

@@ -28,8 +28,8 @@ export default function QuoteFromAPI() {
         >
           <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
         </svg>
-        <p>{content}</p>
-        <p className="text-center">{author}</p>
+        <p className="text-center">{content}</p>
+        <p className="mt-3 text-center">{author}</p>
         <div className="flex items-center justify-end px-5">
           <svg
             className="mt-4 h-8 w-8 text-gray-400"
