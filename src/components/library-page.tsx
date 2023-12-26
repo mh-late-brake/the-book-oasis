@@ -14,7 +14,6 @@ type InputType = Omit<
   | "ebookFileUrl"
   | "ebookFileKey"
   | "userId"
-  | "ebookFileName"
 >[];
 
 enum SortType {
@@ -28,6 +27,7 @@ enum SortType {
   OppRecent = "OppRecent",
   StatusAsc = "StatusAsc",
   StatusDesc = "StatusDesc",
+  EbookAvailable = "EbookAvailable",
 }
 
 export default function LibaryPage({ bookData }: { bookData: InputType }) {
@@ -132,6 +132,13 @@ export default function LibaryPage({ bookData }: { bookData: InputType }) {
       else return 0;
     });
   }
+  if (sort === SortType.EbookAvailable) {
+    bookDataAfterProcess.sort((a, b) => {
+      if (!!a.ebookFileName && !b.ebookFileName) return -1;
+      if (!a.ebookFileName && !!b.ebookFileName) return 1;
+      return 0;
+    });
+  }
 
   return (
     <>
@@ -153,6 +160,7 @@ export default function LibaryPage({ bookData }: { bookData: InputType }) {
             genre={book.genre}
             rating={book.rating}
             status={book.status}
+            ebookFileName={book.ebookFileName}
           />
         ))}
       </div>
@@ -182,6 +190,7 @@ const NavBar = ({
         >
           <option value={SortType.Recent}>Recent</option>
           <option value={SortType.OppRecent}>! Recent</option>
+          <option value={SortType.EbookAvailable}>Ebook</option>
           <option value={SortType.TitleAsc}>Title &#x2191;</option>
           <option value={SortType.TitleDesc}>Title &#x2193;</option>
           <option value={SortType.AuthorAsc}>Author &#x2191;</option>

@@ -21,7 +21,7 @@ export default function CreateNote({
       <NoteCard
         title="Create new note"
         content="Click here to create new note"
-        owner="General Note"
+        owner="Create new note"
         toggle={toggleShowFormVisibility}
       />
       {showForm && (
@@ -52,7 +52,7 @@ const TextArea = ({
   return (
     <div
       onClick={() => toggle()}
-      className="fixed left-20 top-0 h-full w-full bg-gray-500 bg-opacity-50"
+      className="fixed left-20 top-0 z-50 h-full w-full bg-gray-500 bg-opacity-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -171,16 +171,18 @@ const NoteCard = ({
   return (
     <div
       onClick={() => toggle()}
-      className="flex h-52 max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white px-6 py-4 shadow hover:bg-gray-100"
+      className="flex h-52 w-full flex-col justify-between rounded-lg border border-gray-200 bg-white px-6 py-4 shadow hover:bg-gray-100"
     >
-      <div>
+      <div className="h-32 overflow-hidden">
         <h5 className="mb-2 text-2xl font-medium tracking-tight text-gray-900">
           {title}
         </h5>
         <p className="font-normal text-gray-700">{content}</p>
       </div>
       <div className="flex items-center justify-end">
-        <div className="rounded-lg bg-gray-200 px-2">{owner}</div>
+        <div className="h-7 overflow-hidden rounded-lg bg-gray-200 px-2">
+          {owner}
+        </div>
       </div>
     </div>
   );

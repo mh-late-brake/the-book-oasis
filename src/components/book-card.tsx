@@ -15,7 +15,6 @@ type InputType = Omit<
   | "ebookFileKey"
   | "userId"
   | "lastOpenAt"
-  | "ebookFileName"
 >;
 
 export default function BookCard({
@@ -26,6 +25,7 @@ export default function BookCard({
   genre,
   status,
   rating,
+  ebookFileName,
 }: InputType) {
   const imageUrl = coverImageUrl || altBookCover;
 
@@ -60,6 +60,10 @@ export default function BookCard({
             <span>
               <RatingBar rating={rating} />
             </span>
+          </div>
+          <div className="flex justify-between text-gray-700">
+            <span>Ebook:</span>
+            <span>{ebookFileName ? "Available \u2713" : "---"}</span>
           </div>
         </div>
       </div>
