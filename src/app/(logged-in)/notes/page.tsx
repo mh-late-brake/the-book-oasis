@@ -1,7 +1,6 @@
-import CreateNote from "src/components/create-note";
 import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
-import Notes from "src/components/notes";
+import NotesPage from "@/components/notes-page";
 
 const prisma = new PrismaClient();
 
@@ -59,6 +58,7 @@ export default async function Page() {
         bookId: true,
         title: true,
         content: true,
+        lastModifiedAt: true,
         book: {
           select: {
             title: true,
@@ -77,21 +77,11 @@ export default async function Page() {
       noteId: note.id,
       noteTitle: note.title,
       noteContent: note.content,
+      lastModifiedAt: note.lastModifiedAt,
       ownerId,
       ownerName,
     };
   });
 
-  return (
-    <div className="grid grid-cols-5 gap-7 p-5">
-      <CreateNote defaultOwnerId={-1} listOfOwner={listOfOwner} />
-      <Notes
-        listOfNote={listOfNote}
-        listOfOwner={listOfOwner.map((owner) => ({
-          ownerId: owner.id,
-          ownerName: owner.name,
-        }))}
-      />
-    </div>
-  );
+  return <NotesPage listOfOwner={listOfOwner} listOfNote={listOfNote} />;
 }

@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { bookId: string } }) {
         note: true,
       },
     });
-    revalidatePath("/library");
+    // revalidatePath("/library");
   } catch (e) {
     throw new Error("Network error: Cannot connect to DB server.");
   }
@@ -87,6 +87,8 @@ export default async function Page({ params }: { params: { bookId: string } }) {
     id: -1,
     title: "General Note",
   });
+
+  revalidatePath("/library");
 
   return (
     <BookDetailPage
