@@ -16,8 +16,11 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
   const userEmail = session.user?.email;
 
   const dataSchema = z.object({
-    url: z.string(),
-    key: z.string(),
+    imageUrl: z.string(),
+    imageKey: z.string(),
+    ebookName: z.string(),
+    ebookUrl: z.string(),
+    ebookKey: z.string(),
     title: z.string().min(1, { message: "title is required" }),
     author: z.string(),
     genre: z.string(),
@@ -29,8 +32,11 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
   });
 
   const parsed = dataSchema.safeParse({
-    url: formData.get("imageUrl"),
-    key: formData.get("imageKey"),
+    imageUrl: formData.get("imageUrl"),
+    imageKey: formData.get("imageKey"),
+    ebookName: formData.get("ebookName"),
+    ebookUrl: formData.get("ebookUrl"),
+    ebookKey: formData.get("ebookKey"),
     title: formData.get("title"),
     author: formData.get("author"),
     genre: formData.get("genre"),
@@ -61,8 +67,6 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
 
   if (!currentUser) return { error: "cannot find current user in the DB" };
 
-  let successful = false;
-
   try {
     await prisma.user.update({
       where: {
@@ -76,25 +80,21 @@ export const createBook = async (prevFromState: any, formData: FormData) => {
             genre: parsed.data.genre || null,
             numberOfPages: parsed.data.numberOfPages || null,
             status: parsed.data.status,
-            coverImageUrl: parsed.data.url || null,
-            coverImageKey: parsed.data.key || null,
+            coverImageUrl: parsed.data.imageUrl || null,
+            coverImageKey: parsed.data.imageKey || null,
             createdAt: new Date(),
             lastOpenAt: new Date(),
+            ebookFileName: parsed.data.ebookName || null,
+            ebookFileUrl: parsed.data.ebookUrl || null,
+            ebookFileKey: parsed.data.ebookKey || null,
           },
         },
       },
-      include: {
-        book: true,
-      },
     });
-    successful = true;
   } catch (e) {
     return { error: "Network error: Failed to connect to database server." };
   }
-  if (successful) {
-    revalidatePath("/library");
-    redirect("/library");
-  } else {
-    return { error: "Something bad happended." };
-  }
+
+  revalidatePath("/library");
+  redirect("/library");
 };

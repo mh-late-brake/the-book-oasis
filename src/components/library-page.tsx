@@ -14,6 +14,7 @@ type InputType = Omit<
   | "ebookFileUrl"
   | "ebookFileKey"
   | "userId"
+  | "ebookFileName"
 >[];
 
 enum SortType {

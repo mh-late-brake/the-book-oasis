@@ -15,6 +15,7 @@ type InputType = Omit<
   | "ebookFileKey"
   | "userId"
   | "lastOpenAt"
+  | "ebookFileName"
 >;
 
 export default function BookCard({

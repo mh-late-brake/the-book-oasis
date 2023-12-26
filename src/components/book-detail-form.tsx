@@ -23,11 +23,13 @@ export default function BookDetailForm({
 }: Omit<
   Book,
   | "createdAt"
+  | "ebookFileName"
   | "ebookFileUrl"
   | "ebookFileKey"
   | "userId"
   | "coverImageUrl"
   | "coverImageKey"
+  | "lastOpenAt"
 >) {
   const [formState, formAction] = useFormState(updateBook, null);
 

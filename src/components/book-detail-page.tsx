@@ -6,6 +6,7 @@ import CreateNote from "src/components/create-note";
 import Notes from "src/components/notes";
 import { Book } from "@prisma/client";
 import { useRef } from "react";
+import EbookForm from "./ebook-form";
 
 export default function BookDetailPage({
   book,
@@ -29,9 +30,10 @@ export default function BookDetailPage({
   return (
     <>
       <div className="m-auto flex h-screen w-full flex-col items-center justify-between">
-        <div className="flex h-5/6 w-4/5 items-center">
-          <div className="basis-1/3">
+        <div className="flex h-5/6 w-5/6 items-center">
+          <div className="flex basis-1/3 flex-col items-center justify-between pt-12">
             <BookCoverForm id={book.id} imageUrl={book.coverImageUrl} />
+            <EbookForm id={book.id} ebookFileName={book.ebookFileName} />
           </div>
           <div className="basis-2/3">
             <BookDetailForm

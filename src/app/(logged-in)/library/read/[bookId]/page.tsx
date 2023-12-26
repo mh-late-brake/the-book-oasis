@@ -1,7 +1,9 @@
 import { auth } from "src/auth";
 import { PrismaClient } from "@prisma/client";
-import BookDetailPage from "@/components/book-detail-page";
 import { revalidatePath } from "next/cache";
+import CreateNote from "src/components/create-note";
+import Notes from "src/components/notes";
+import EbookReader from "@/components/ebook-reader";
 
 const prisma = new PrismaClient();
 
@@ -52,6 +54,9 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   if (thisUser.id !== book.userId)
     throw new Error("Error: You are not the owner of this book.");
 
+  if (!book?.ebookFileName || !book.ebookFileUrl)
+    throw new Error("This book does not have Ebook file.");
+
   try {
     await prisma.book.update({
       where: {
@@ -100,10 +105,13 @@ export default async function Page({ params }: { params: { bookId: string } }) {
   revalidatePath("/library");
 
   return (
-    <BookDetailPage
-      book={book}
-      listOfOwner={listOfOwner}
-      listOfNote={listOfNote}
-    />
+    <div className="flex h-full">
+      <div className="basis-2/3">
+        <EbookReader
+          ebookName={book.ebookFileName}
+          ebookUrl={book.ebookFileUrl}
+        />
+      </div>
+    </div>
   );
 }
