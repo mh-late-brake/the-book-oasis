@@ -41,6 +41,7 @@ model Book {
   finishReadingAt DateTime?
   coverImageUrl   String?
   coverImageKey   String?
+  ebookFileName   String?
   ebookFileUrl    String?
   ebookFileKey    String?
   userId          Int

@@ -23,6 +23,7 @@ export default function BookDetailForm({
 }: Omit<
   Book,
   | "createdAt"
+  | "ebookFileName"
   | "ebookFileUrl"
   | "ebookFileKey"
   | "userId"
