@@ -9,19 +9,23 @@ import { ReactNode } from "react";
 
 export default function SideBar() {
   return (
-    <div className="fixed left-0 top-0 flex h-screen w-20 flex-col bg-slate-200 shadow-xl">
+    <div className="fixed left-0 top-0 flex h-screen w-20 flex-col border border-gray-200 bg-white shadow-md shadow-gray-500">
       <Link href="/user-profile">
         <SideBarIcon icon={<MdPerson size="55" />} text="User Profile" />
       </Link>
+      <Divider />
       <Link href="/home">
         <SideBarIcon icon={<GoHome size="55" />} text="Home" />
       </Link>
+      <Divider />
       <Link href="/library">
         <SideBarIcon icon={<VscLibrary size="50" />} text="Library" />
       </Link>
+      <Divider />
       <Link href="/notes">
         <SideBarIcon icon={<CiStickyNote size="55" />} text="Notes" />
       </Link>
+      <Divider />
       <Link href="/statistics">
         <SideBarIcon icon={<GoGraph size="45" />} text="Statistics" />
       </Link>
@@ -38,9 +42,9 @@ const SideBarIcon = ({
   icon: ReactNode;
   text: any;
 }) => (
-  <div className="group relative mx-auto mb-2 mt-2 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gray-400 text-gray-600 shadow-lg hover:rounded-xl hover:bg-gray-600 hover:text-white">
+  <div className="group relative mx-auto mb-1.5 mt-1 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-transparent text-gray-700 hover:rounded-xl hover:border-gray-300 hover:shadow-md hover:shadow-gray-700">
     {icon}
-    <span className="absolute left-20 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-gray-300 p-2 text-xl text-gray-600 shadow-md transition-all duration-100 group-hover:scale-100">
+    <span className="absolute left-20 m-2 w-auto min-w-max origin-left scale-0 rounded-md bg-gray-100 p-2 text-xl text-gray-600 shadow-md shadow-gray-600 transition-all duration-100 group-hover:scale-100">
       {text}
     </span>
   </div>
@@ -63,5 +67,5 @@ const SignOutButton = () => {
 };
 
 const Divider = () => (
-  <hr className="mx-2; rounded-full border border-gray-200 bg-gray-200 dark:border-gray-800 dark:bg-gray-800" />
+  <hr className="mx-0.5 my-0 rounded-full border border-gray-400 bg-gray-400" />
 );
