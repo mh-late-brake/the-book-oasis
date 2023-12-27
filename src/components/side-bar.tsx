@@ -1,5 +1,4 @@
 import { signOut } from "src/auth";
-import { MdPerson } from "react-icons/md";
 import { GoHome, GoGraph } from "react-icons/go";
 import { VscLibrary } from "react-icons/vsc";
 import { CiStickyNote } from "react-icons/ci";
@@ -10,10 +9,6 @@ import { ReactNode } from "react";
 export default function SideBar() {
   return (
     <div className="fixed left-0 top-0 flex h-screen w-20 flex-col border border-gray-200 bg-white shadow-md shadow-gray-500">
-      <Link href="/user-profile">
-        <SideBarIcon icon={<MdPerson size="55" />} text="User Profile" />
-      </Link>
-      <Divider />
       <Link href="/home">
         <SideBarIcon icon={<GoHome size="55" />} text="Home" />
       </Link>
