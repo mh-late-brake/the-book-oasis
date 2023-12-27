@@ -18,7 +18,7 @@ export default function QuoteFromAPI() {
 
   return (
     <div className="rounded-2xl border border-gray-100 p-2 pl-3 shadow-lg">
-      <blockquote className="text-gray-900:text-white text-xl italic">
+      <blockquote className="text-xl italic text-gray-900">
         <svg
           className="mb-4 h-8 w-8 text-gray-400"
           aria-hidden="true"
